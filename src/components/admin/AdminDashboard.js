@@ -1,5 +1,6 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 
 function AdminDashboard() {
     const [adminName, setAdminName] = useState("");
@@ -35,9 +36,12 @@ function AdminDashboard() {
         <div className='container'>
             <div className='d-flex justify-content-between align-items-center'>
                 <h1>Admin Dashboard</h1>
-                <button className='btn btn-danger' onClick={handleLogout}>Logout</button>
-            </div> <hr/>
-            
+                <div>
+                    <button className='btn btn-danger' onClick={handleLogout}>Logout</button>
+                    <Link to="/admin-profile" className='btn btn-primary ms-2'>Profile</Link>
+                </div>
+            </div> <hr />
+
             <h5>AdminName: {adminName}</h5>
             <h5>AdminUsername: {adminUsername}</h5>
             <h5>AdminPassword: {adminPassword}</h5>

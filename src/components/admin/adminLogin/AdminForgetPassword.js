@@ -1,9 +1,9 @@
 import axios from 'axios';
-import React, { useState } from 'react'
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function AdminLogin() {
-    const [valeus, setValues] = useState({
+function AdminForgetPassword() {
+    const [values, setValues] = useState({
         Admin_Username: "",
         Admin_Password: "",
     });
@@ -13,18 +13,19 @@ function AdminLogin() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        axios.post("http://localhost:3001/admin-login", valeus).then((response) => {
+    
+        axios.post("http://localhost:3001/admin-forget-password", values).then((response) => {
             if (response.data.Error) {
                 alert(response.data.Error);
             } else {
-                navigate("/admin-dashboard");
+                navigate("/admin-login");
             }
         });
     };
 
     return (
         <div className='container'>
-            <h1>Admin Login</h1>
+            <h1>Admin Forget Password</h1>
             <form onSubmit={handleSubmit}>
                 <div className="mb-3">
                     <label htmlFor="username" className="form-label">Username</label>
@@ -32,7 +33,7 @@ function AdminLogin() {
                         type="text"
                         className="form-control"
                         placeholder='username'
-                        onChange={(e) => setValues({ ...valeus, Admin_Username: e.target.value })}
+                        onChange={(e) => setValues({ ...values, Admin_Username: e.target.value })}
                     />
                 </div>
 
@@ -42,18 +43,14 @@ function AdminLogin() {
                         type="password"
                         className="form-control"
                         placeholder='password'
-                        onChange={(e) => setValues({ ...valeus, Admin_Password: e.target.value })}
+                        onChange={(e) => setValues({ ...values, Admin_Password: e.target.value })}
                     />
                 </div>
 
-                <button type="submit" className="btn btn-primary w-100 mb-3">Login</button>
-                <div className="btn-group w-100" role="group">
-                    <Link to="/admin-register" className='btn btn-outline-success w-100 me-2'>Create Account</Link>
-                    <Link to="/admin-forget-password" className='btn btn-outline-warning w-100'>Forgot password</Link>
-                </div>
+                <button type="submit" className="btn btn-primary w-100 mb-3">Submit</button>
             </form>
         </div>
     )
 }
 
-export default AdminLogin
+export default AdminForgetPassword
